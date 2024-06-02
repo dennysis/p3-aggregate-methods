@@ -1,4 +1,5 @@
 from datetime import datetime
+
 class Student:
     def __init__(self, name):
         self.name = name
@@ -17,7 +18,6 @@ class Student:
 
 class Course:
     def __init__(self, title):
-
         self.title = title
         self._enrollments = []
 
@@ -30,16 +30,15 @@ class Course:
     def get_enrollments(self):
         return self._enrollments.copy()
 
-
 class Enrollment:
-    all = []
+    all = []  # Class variable to keep track of all enrollments
     
     def __init__(self, student, course):
         if isinstance(student, Student) and isinstance(course, Course):
             self.student = student
             self.course = course
-            self._enrollment_date = datetime.now()
-            type(self).all.append(self)
+            self._enrollment_date = datetime.now()  # Record the enrollment date
+            type(self).all.append(self)  # Add the current enrollment to the list of all enrollments
         else:
             raise TypeError("Invalid types for student and/or course")
 
